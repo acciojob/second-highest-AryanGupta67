@@ -1,32 +1,42 @@
 <!DOCTYPE html>
-
-<html>
-
+<html lang="en">
 <head>
-	<link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <title>Second Highest Element</title>
 </head>
+<body>
+  <h1>Second Highest Element Finder</h1>
+  <p>Open the browser console to see the output.</p>
 
-<body>	
-	<script>
-		function secondHighest(arr) {
-			//Write your code here
-			
-		}
+  <script>
+    // Complete the function below
+    function secondHighest(arr) {
+      // If array is empty or has only 1 element, return -Infinity
+      if (arr.length < 2) return -Infinity;
 
-		function Main() {
-			var n = prompt("Enter the number of elements");
-			var arr = [];
-			for (var i = 0; i < n; i++) {
-				arr[i] = prompt("Enter element " + (i+1));
-			}
-			alert(secondHighest(arr));
-		}
-		Main();
-	</script>
+      let first = -Infinity;
+      let second = -Infinity;
 
-    <script type="text/javascript" src="./script.js">
-</script>
+      for (let num of arr) {
+        if (num > first) {
+          second = first;
+          first = num;
+        } else if (num > second && num < first) {
+          second = num;
+        }
+      }
 
+      // If no second highest was found (all elements are same)
+      return second === -Infinity ? -Infinity : second;
+    }
+
+    // Test Cases
+    console.log(secondHighest([5, 1, 2, 3, 4]));      // Output: 4
+    console.log(secondHighest([-1, -2, -3, -4, -5])); // Output: -2
+    console.log(secondHighest([]));                  // Output: -Infinity
+    console.log(secondHighest([1]));                 // Output: -Infinity
+    console.log(secondHighest([1, 1, 1, 1, 1]));      // Output: -Infinity
+  </script>
 </body>
-
 </html>
+
